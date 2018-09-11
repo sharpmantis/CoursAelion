@@ -6,14 +6,30 @@ import{     MatTableModule,
   MatPaginatorModule,
   MatSortModule,
   MatIconModule,
-  MatButtonModule} from '@angular/material'
+  MatButtonModule} from '@angular/material';
 
 @NgModule({
   imports: [
     CommonModule,
+    BrowserAnimationsModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatIconModule,
+    MatButtonModule
+
 
     
   ],
-  declarations: []
+  declarations: [],
+  exports:[
+   
+    BrowserAnimationsModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatIconModule,
+    MatButtonModule
+  ]
 })
 export class MaterialModule { }
