@@ -1,3 +1,5 @@
+/**
+
 
 
 div.center{
@@ -5,10 +7,10 @@ div.center{
     
     left:50%;
     
-    width:460px; /* A toi de donner la bonne largeur */
-    height:350px; /* A toi de donner la bonne hauteur */
-    margin-left:-230px; /* -largeur/2 */
-    margin-top:75px; /* -hauteur/2 */
+    width:460px; 
+    height:350px; 
+    margin-left:-230px; 
+    margin-top:75px;
     background-color: rgb(186, 186, 201);
     border-radius: 25px;
     text-align: center;
@@ -46,11 +48,11 @@ div.dates{
     position:relative;
     
     left:50%;
-    width:200px; /* A toi de donner la bonne largeur */
-    height:10px; /* A toi de donner la bonne hauteur */
-    margin-left:-160px; /* -largeur/2 */
-    margin-top:15px; /* -hauteur/2 */
-    margin-bottom:15px; /* -hauteur/2 */
+    width:200px; 
+    height:10px;
+    margin-left:-160px;
+    margin-top:15px;
+    margin-bottom:15px; 
     
 }
 
@@ -81,3 +83,4 @@ button{
     
 
 }
+*/

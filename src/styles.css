@@ -6,6 +6,3 @@
 @import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
 @import "~material-design-icons/iconfont/material-icons.css";
 
-body{
-    background-color: rgb(54, 89, 100);
-}
