@@ -89,11 +89,13 @@ export class TodoFormComponent implements OnInit {
     );
 
   }
-
+  private _loadForm(): void {
+    this.ngOnInit();
+  }
 
 
   public saveTodo(): void {
-    let _todo = this.todoForm.value;
+    const _todo: TodoInterface = this.todoForm.value;
     _todo.isChecked = false;
 
    if(this.todoToUpdate.hasOwnProperty('id')){
@@ -101,14 +103,12 @@ export class TodoFormComponent implements OnInit {
     this.todoService.updateTodo(_todo);
   }else{
     this.todoService.addTodos(_todo);
-  };
+  }
 
     console.log('todoupdate: '+JSON.stringify(this.todoToUpdate))
-  };
-
-  private _loadForm(): void {
-    this.ngOnInit();
   }
+
+ 
 
 
 

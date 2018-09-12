@@ -8,7 +8,11 @@ import { TodoInterface } from './shared/interfaces/todo-interface';
 })
 export class AppComponent {
   public title: String = 'TodoList Generator v1.0';
-
+  
+  public addTodo(): void {
+    //this.todos.push({ title: this.aTodo, isChecked: false });
+    this.aTodo='';
+  }
   /**
    * @var todos:TodoInterface
    * qui cree le Tableau des Todos
@@ -55,10 +59,7 @@ export class AppComponent {
    */
 
    
-  public addTodo(): void {
-    //this.todos.push({ title: this.aTodo, isChecked: false });
-    this.aTodo='';
-  }
+
 
   /**
    * méthode de suppression de todo

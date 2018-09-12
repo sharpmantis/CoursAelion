@@ -3,8 +3,9 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { TodoService } from '../../shared/services/todo.service';
 import { Subscription } from 'rxjs';
 import { TodoInterface } from '../../shared/interfaces/todo-interface';
-import { MatTableDataSource,MatPaginator,MatSort,} from '@angular/material'
-
+import { MatTableDataSource,MatPaginator,MatSort,} from '@angular/material';
+import{ MatColumns } from './../../shared/interfaces/mat-columns';
+import{ TodoHelper} from'./../../shared/helpers/todo-helper'
 @Component({
   selector: 'app-view-todos',
   templateUrl: './view-todos.component.html',
@@ -24,31 +25,31 @@ export class ViewTodosComponent implements OnInit {
   public todoForm: FormGroup;
   public column = new FormControl();
 
-
-
-  public displayedColumns : String[]=[
-    'title',
-    'debut',
-    'fin',
-    'update',
-    'delete'
-  ];
+/** 
   //Colones visibles dans mon select
-  public availableColumns: String[]=[
-    'debut',
-    'fin',
+  public availableColumns: any[]=[
+    {value:'debut', label:'Du...'},
+    {value:'fin', label:' Au...'}
   ];
+  */
   //Colonnes cochées par défaut
-  public selectedValue: String[]=[
-    'debut',
-    'fin',
-  ];
+
   public selectedOptions: any;
 
   public dataSource= new MatTableDataSource<TodoInterface>();
+/** 
+  public getLabel(index: number):String{
+    return this.availableColumns[index].label;
+  }
+  */
+
+  public helper: TodoHelper;  
+  public selectedValue : String[];
 
   constructor(private todoService: TodoService) {
-    //a Ctrl+C Ctrl+V
+    //instancier le helper
+    this.helper = new TodoHelper();
+    this.selectedValue = this.helper.optionalColumnsToArray();
     this.todos = [];
 
     this.todoSubsctiption = this.todoService.getTodo()
@@ -63,11 +64,11 @@ export class ViewTodosComponent implements OnInit {
         } else {
           this.todos[index] = todo;
         }
-
+        this.dataSource.data=this.todos;
       }
 
       );
-      this.dataSource.data=this.todos;
+      
   }
   /**
    * Après la construction de  l'objet, on charge la liste 
@@ -83,21 +84,7 @@ export class ViewTodosComponent implements OnInit {
   }
 
     public changeView(event:any):void{
-    const toShow: String[] = this.selectedOptions;
-    const toDisplay: String[] = [];
-
-    toDisplay.push('title');
-
-    if(toShow.indexOf('debut') !==-1){
-      toDisplay.push('debut');
-    }
-    if(toShow.indexOf('fin') !== -1){
-      toDisplay.push('fin');
-    }
-    toDisplay.push('update');
-    toDisplay.push('delete');
-
-    this.displayedColumns=toDisplay;
+    this.helper.setDisplayedColumns(this.selectedOptions);
   }
 
   ngOnInit() {
@@ -155,7 +142,6 @@ export class ViewTodosComponent implements OnInit {
 
   public checkUncheckall() {
     this.checkedStatus = !this.checkedStatus;
-
     this._check()
 
   }
